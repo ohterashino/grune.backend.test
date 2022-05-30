@@ -21,6 +21,7 @@
                     </h3>
                 </div>
                 <!-- /.box-header -->
+                {{-- 練習 --}}
                 <div class="box-body">
                     @if ($errors->any())
                     <div class="alert alert-danger">
