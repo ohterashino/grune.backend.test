@@ -149,5 +149,5 @@
 <!-- validationEngine -->
 <script src="{{ asset('js/3rdparty/validation-engine/jquery.validationEngine-en.js') }}"></script>
 <script src="{{ asset('js/3rdparty/validation-engine/jquery.validationEngine.js') }}"></script>
-<script src="{{ asset('js/backend/users/form.js') }}"></script>
+<script src="{{ asset('js/backend/companies/form.js') }}"></script>
 @endsection
