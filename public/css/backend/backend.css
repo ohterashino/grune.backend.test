@@ -147,13 +147,49 @@ input[type=number]::-webkit-outer-spin-button {
     clear: both;
     /*overflow: auto;*/
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     border-top: 1px solid #eee;
+}
+.form-group2 {
+    margin: 0;
+    padding: 25px 0;
+    clear: both;
+    /*overflow: auto;*/
+    display: flex;
+    align-items: center;
+    /* border-top: 1px solid #eee; */
+}
+
+#inputPostcode {
+    width: 10em;
+    /* margin-left: -20%; */
+    margin-right: 20px;
+}
+.postcode {
+    justify-items: center;
+    display: flex;
+    width: auto;
+    padding: 0;
+    margin-right: auto;
+    position: relative;
+    right: 2%;
+}
+.btn-search {
+    margin-right: auto;
+    height: 34px;
+}
+.btn-back{
+    position: absolute;
+    right: 30px;
+    top: 20px;
 }
 .no-border {
     border-top: none;
 }
 #job-content .form-group:last-of-type {
+	border-bottom: none;
+}
+#job-content .form-group2:last-of-type {
 	border-bottom: none;
 }
 .date {
@@ -815,10 +851,25 @@ input[type=search] {
   font-weight: bold;
 }
 
+@media only screen and (max-width:1198px){
+    .postcode {
+        position: relative;
+        right: 4.5%;
+    }
+}
+
 @media only screen and (max-width:991px){
-    .form-group {
-        display: block;
+    .form-group, .form-group2 {
+        display: flex;
+        flex-flow: column;
         overflow: auto;
+    }
+    #inputPostcode {
+        margin-left: 0;
+    }
+    .postcode {
+        position: relative;
+        right: 0;
     }
 }
 @media only screen and (max-width:767px){
@@ -870,12 +921,14 @@ input[type=search] {
     .box-body {
         padding: 0 3% 25px 3% !important;
     }
-    .form-group {
+    .form-group,
+    .form-group2 {
         overflow: auto;
         margin: 0 -12px !important;
     }
     .box-header {
         padding: 25px 3% !important;
+        
     }
     .content-header>.breadcrumb {
         padding-left: 3%;
