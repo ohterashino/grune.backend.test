@@ -160,7 +160,7 @@ input[type=number]::-webkit-outer-spin-button {
     /* border-top: 1px solid #eee; */
 }
 
-#inputPostcode {
+#postcode {
     width: 10em;
     /* margin-left: -20%; */
     margin-right: 20px;
@@ -182,6 +182,17 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     right: 30px;
     top: 20px;
+}
+.display-switch{
+    color: #333;
+    background-color: #e8e8e8;
+    transition: 0.2s;
+    border: 1px solid #bbbbbb;
+    margin-right: 10px;
+} 
+.display-switch:hover {
+text-decoration: none;
+background-color: #bbbbbb;
 }
 .no-border {
     border-top: none;
@@ -864,7 +875,7 @@ input[type=search] {
         flex-flow: column;
         overflow: auto;
     }
-    #inputPostcode {
+    #postcode {
         margin-left: 0;
     }
     .postcode {

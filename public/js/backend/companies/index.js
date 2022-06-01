@@ -24,8 +24,8 @@ $(function () {
 
     // Formatter for edit/delete
     var formatActionField = function (row, cell, formatterParams) {
-        return '<form id="form-delete-' + row.getData()['id'] + '" action="' + rootUrl + '/admin/delete/" method="get">' +
-               '<a class="btn btn-primary" href="' + rootUrl + '/admin/edit/' + row.getData()['id'] + '" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;' +
+        return '<form id="form-delete-' + row.getData()['id'] + '" action="' + rootUrl + '/company/delete/" method="get">' +
+               '<a class="btn btn-primary" href="' + rootUrl + '/company/edit/' + row.getData()['id'] + '" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;' +
                '<input type="hidden" name="id" value="' + row.getData()['id'] + '">' +
                '<input type="hidden" name="delete_flag" value="1">' +
                '<span onclick="javascript:if(confirm(\'Are you sure want to delete this Data？\')) { document.getElementById(\'form-delete-' + row.getData()['id'] + '\').submit(); } return false;" class="btn btn-warning btn-delete" title="削除"><i class="fa fa-trash"></i></span>' +
@@ -56,9 +56,10 @@ $(function () {
         },
         columns: [
             {title: "ID", field: "id", width: 45, headerFilter: "input", sorter: "number", headerFilterPlaceholder: " "},
-            {title: "Username", field: "username", minwidth: 200, headerFilter: "input", headerFilterPlaceholder: " "},
-            {title: "Name", field: "display_name", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
-			      {title: "Created At", field: "created_at", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
+            {title: "Name", field: "name", minwidth: 200, headerFilter: "input", headerFilterPlaceholder: " "},
+            {title: "Email", field: "email", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
+            {title: "Postcode", field: "postcode", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
+            {title: "Address", field: "street_address", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Updated At", field: "updated_at", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Action", field: "action", align: "center", headerFilter: false, width: 100, formatter: formatActionField, headerFilterPlaceholder: " ", headerSort: false, frozen: true}
         ],
@@ -87,7 +88,7 @@ $(function () {
         }
     });
 
-    $('#datalist').tabulator('setData', rootUrl + '/api/admin/users/getUsersTabular');
+    $('#datalist').tabulator('setData', rootUrl + '/api/admin/companies/getCompaniesTabular');
     $('#datalist').tabulator('setLocale', 'ja-jp');
 
     $(window).resize(function(){

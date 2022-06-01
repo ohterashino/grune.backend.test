@@ -13,7 +13,11 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List</h3>
+                    <h3 class="box-title">Company List Page</h3>
+                    <div class="btn-back">
+                        <a href="＃" class="btn display-switch">表示項目の切り替え</a>
+                        <a href="{{ route('company.add') }}" class="btn btn-primary">Add Page</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
