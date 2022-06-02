@@ -75,22 +75,22 @@ class CompanyController extends Controller
         }
     }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id) {
-    //     $user = User::find($id);
-    //     $user->form_action = $this->getRoute() . '.update';
-    //     $user->page_title = 'User Edit Page';
-    //     // Add page type here to indicate that the form.blade.php is in 'edit' mode
-    //     $user->page_type = 'edit';
-    //     return view('backend.companies.form', [
-    //         'company' => $company
-    //     ]);
-    // }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        $company = Company::find($id);
+        $company->form_action = $this->getRoute() . '.update';
+        $company->page_title = 'Company Edit Page';
+        // Add page type here to indicate that the form.blade.php is in 'edit' mode
+        $company->page_type = 'edit';
+        return view('backend.companies.form', [
+            'company' => $company
+        ]);
+    }
     
     public function delete(Request $request) {
         try {

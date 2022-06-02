@@ -36,7 +36,11 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Name</strong>
                         </div>
-                        {{Form::text('name', null, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('name', $company->name, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
+                        @else
+                        {{Form::text('name', $company->name, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
+                        @endif
                     </div>
                     {{-- Name Form --}}
                     {{-- Emain Form --}}
@@ -45,7 +49,11 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Email</strong>
                         </div>
-                        {{Form::email('email', null, ['class' => 'form-control','id' => 'email','placeholder' => 'info@grune.co.jp'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::email('email', $company->email, ['class' => 'form-control','id' => 'email','placeholder' => 'info@grune.co.jp'])}}
+                        @else
+                        {{Form::email('email', $company->email, ['class' => 'form-control','id' => 'email','placeholder' => 'info@grune.co.jp'])}}
+                        @endif
                     </div>
                     {{-- Email Form --}}
                     {{-- Postcode Form --}}
@@ -55,7 +63,11 @@
                             <strong class="field-title">Postcode</strong>
                         </div>
                             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header postcode ">
-                            {{Form::text('postcode', null, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
+                            @if($company->page_type == 'create')
+                            {{Form::text('postcode', $company->postcode, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
+                            @else
+                            {{Form::text('postcode', $company->postcode, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
+                            @endif
                                     <button type="submit" name="submit" class="btn btn-primary btn-search">Search</button>
                         </div>
                     </div>
@@ -66,7 +78,11 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Prefecture</strong>
                         </div>
+                        @if($company->page_type == 'create')
                         {{Form::select('prefecture_id', ['1' => '北海道', '2' => '青森県', '3' => '岩手県', '4' => '宮城県', '5' => '秋田県', '6' => '山形県', '7' => '福島県'], 'ordinarily', ['class' => 'form-control','id' => 'prefecture_id'])}}
+                        @else
+                        {{Form::select('prefecture_id', ['1' => '北海道', '2' => '青森県', '3' => '岩手県', '4' => '宮城県', '5' => '秋田県', '6' => '山形県', '7' => '福島県'], 'ordinarily', ['class' => 'form-control','id' => 'prefecture_id'])}}
+                        @endif
                     </div>
                     {{-- Prefecture Form --}}
                     {{-- City Form --}}
@@ -75,7 +91,11 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">City</strong>
                         </div>
-                        {{Form::text('city', null, ['class' => 'form-control','id' => 'city','placeholder' => '仙台市青葉区'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('city', $company->city, ['class' => 'form-control','id' => 'city','placeholder' => '仙台市青葉区'])}}
+                        @else
+                        {{Form::text('city', $company->city, ['class' => 'form-control','id' => 'city','placeholder' => '仙台市青葉区'])}}
+                        @endif
                     </div>
                     {{-- City Form --}}
                     {{-- Local Form --}}
@@ -84,7 +104,11 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Local</strong>
                         </div>
-                        {{Form::text('local', null, ['class' => 'form-control','id' => 'local','placeholder' => '本町'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('local', $company->local, ['class' => 'form-control','id' => 'local','placeholder' => '本町'])}}
+                        @else
+                        {{Form::text('local', $company->local, ['class' => 'form-control','id' => 'local','placeholder' => '本町'])}}
+                        @endif
                     </div>
                     {{-- Local Form --}}
                     {{-- StreetAddress Form --}}
@@ -92,7 +116,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Street Address</strong>
                         </div>
-                        {{Form::text('street_address', null, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('street_address', $company->street_address, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
+                        @else
+                        {{Form::text('street_address', $company->street_address, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
+                        @endif
                     </div>
                     {{-- StreetAddress Form --}}
                     {{-- BusinessHour Form --}}
@@ -100,7 +128,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Bisiness Hour</strong>
                         </div>
-                        {{Form::text('business_hour', null, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('business_hour', $company->business_hour, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
+                        @else
+                        {{Form::text('business_hour', $company->business_hour, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
+                        @endif
                     </div>
                     {{-- BusinessHour Form --}}
                     {{-- RegularHoliday Form --}}
@@ -108,7 +140,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Regular Holiday</strong>
                         </div>
-                        {{Form::text('regular_holiday', null, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('regular_holiday', $company->regular_holiday, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
+                        @else
+                        {{Form::text('regular_holiday', $company->regular_holiday, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
+                        @endif
                     </div>
                     {{-- RegularHoliday Form --}}
                     {{-- Phone Form --}}
@@ -116,7 +152,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Phone</strong>
                         </div>
-                        {{Form::text('phone', null, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
+                        @else
+                        {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
+                        @endif
                     </div>
                     {{-- Phone Form --}}
                     {{-- Fax Form --}}
@@ -124,7 +164,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Fax</strong>
                         </div>
-                        {{Form::text('fax', null, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
+                        @else
+                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
+                        @endif
                     </div>
                     {{-- Fax Form --}}
                     {{-- URL Form --}}
@@ -132,7 +176,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">URL</strong>
                         </div>
-                        {{Form::text('url', null, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
+                        @else
+                        {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
+                        @endif
                     </div>
                     {{-- URL Form --}}
                     {{-- LicenseNumber Form --}}
@@ -140,7 +188,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">License Number</strong>
                         </div>
-                        {{Form::text('license_number', null, ['class' => 'form-control','id' => 'license_number'])}}
+                        @if($company->page_type == 'create')
+                        {{Form::text('license_number', $company->license_number, ['class' => 'form-control','id' => 'license_number'])}}
+                        @else
+                        {{Form::text('license_number', $company->license_number, ['class' => 'form-control','id' => 'license_number'])}}
+                        @endif
                     </div>
                     {{-- LicenseNumber Form --}}
                     {{-- Image Form --}}
@@ -149,13 +201,22 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Image</strong>
                         </div>
+                        @if($company->page_type == 'create')
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
+                        @else
+                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
+                        {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
+                        @endif
                     </div>
                     {{-- Image Form --}}
                     <div id="form-button" class="form-group no-border">
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="margin-top: 20px;">
+                            @if($company->page_type == 'create')
                             <button type="submit" name="submit" id="send" class="btn btn-primary">Submit</button>
+                            @else
+                            <button type="submit" name="submit" id="send" class="btn btn-primary">Updated</button>
+                            @endif
                         </div>
                     </div>
                     {{-- Image Form --}}
