@@ -15,7 +15,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Company List Page</h3>
                     <div class="btn-back">
-                        <a href="＃" class="btn display-switch">表示項目の切り替え</a>
+                        <button class="btn display-switch">表示項目の切り替え</button>
                         <a href="{{ route('company.add') }}" class="btn btn-primary">Add Page</a>
                     </div>
                 </div>

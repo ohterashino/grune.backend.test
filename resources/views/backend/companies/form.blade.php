@@ -4,9 +4,7 @@
     <h1>Companies</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">
-            {{-- {{ $company->page_title }} --}}
-        </li>
+        <li class="active">{{ $company->page_title }}</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -15,7 +13,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">{{ $company }}</h3>
+                    <h3 class="box-title">{{ $company->page_title }}</h3>
                     <a href="{{ route('company') }}" class="btn btn-primary btn-back">Back</a>
                 </div>
                 <!-- /.box-header -->
@@ -29,83 +27,20 @@
                         </ul>
                     </div>
                     @endif
-                    {{-- {{ Form::open(array('route' => $company->form_action, 'method' => 'POST', 'files' => true, 'id' => 'company-form')) }} --}}
-                    {{-- {{Form::open(['url' => '/', 'files' => true])}} --}}
-                    {{ Form::open(array('root' => 'company.create', 'files' => true, 'method' => 'POST')) }}
-                    {{-- {{ Form::open(array('route' => $user->form_action,' 'method' => 'POST', 'files' => true, 'id' => 'user-form')) }}
-                    {{-- {{ Form::open(array('route' => $company->form_action, 'method' => 'POST', 'files' => true, 'id' => 'company-form')) }}
 
-
-                    {{ Form::hidden('id', $user->id, array('id' => 'user_id')) }}
-                    <div id="form-username" class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                            <span class="label label-danger label-required">Required</span>
-                            <strong class="field-title">Username</strong>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                            @if($user->page_type == 'create')
-                            {{ Form::text('username', $user->username, array('class' => 'form-control validate[required, regex[/^[\w-]*$/], alpha_num, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11')) }}
-                            @else
-                            {{ Form::text('username', $user->username, array('readonly' => 'readonly', 'class' => 'form-control validate[required, regex[/^[\w-]*$/], alpha_num, maxSize[255]]')) }}
-                            @endif
-                        </div>
-                    </div>
-
-                    <div id="form-display-name" class="form-group {{ $user->page_type == 'edit'?'hide':'' }}">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                            <span class="label label-danger label-required">Required</span>
-                            <strong class="field-title">Name</strong>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                            {{ Form::text('display_name', $user->display_name, array('placeholder' => '', 'class' => 'form-control validate[required, maxSize[100]]', 'data-prompt-position' => 'bottomLeft:0,11')) }}
-                        </div>
-                    </div>
-
-                    @if($user->page_type == 'create')
-                    <div id="form-password" class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                            <span class="label label-danger label-required">Required</span>
-                            <strong class="field-title">Password</strong>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                            {{ Form::password('password', array('placeholder' => ' ', 'class' => 'form-control validate[required, minSize[6], maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11')) }}
-                        </div>
-                    </div>
-                    @else
-                    <div id="form-password-confirm" class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                            <span class="label label-danger label-required">Required</span>
-                            <i class="fa fa-question-circle tooltip-img" data-toggle="tooltip" data-placement="right" title="Please input only when changing the password."></i>
-                            <strong class="field-title">Password</strong>
-                        </div>
-                        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 col-content">
-                            <button type="button" name="reset" id="reset-button" class="btn btn-primary">Change</button>
-                        </div>
-                        <div id="reset-field" class="col-xs-10 col-sm-10 col-md-8 col-lg-9 col-content hide">
-                            {{ Form::password('password', array('id' => 'password', 'placeholder' => 'Please input only when changing password', 'class' => 'form-control validate[minSize[6], maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11', 'style' => 'margin-top:5px')) }}
-                            <label for="show-password"><input id="show-password" type="checkbox" name="show-password" value="1"> Show Password</label>
-                        </div>
-                    </div>
-                    @endif
-
-                    <div id="form-button" class="form-group no-border">
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="margin-top: 20px;">
-                            <button type="submit" name="submit" id="send" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div> --}}
-                    {{ Form::hidden('id', null, array('id' => 'company_id')) }}
+                    {{ Form::open(array('route' => $company->form_action, 'method' => 'POST', 'files' => true, 'id' => 'company-form')) }}
+                    {{ Form::hidden('id', $company->id, array('id' => 'company_id')) }}
                     {{-- Name Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-name" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Name</strong>
-                            
                         </div>
                         {{Form::text('name', null, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
                     </div>
                     {{-- Name Form --}}
                     {{-- Emain Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-email" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Email</strong>
@@ -114,7 +49,7 @@
                     </div>
                     {{-- Email Form --}}
                     {{-- Postcode Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-postcode" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Postcode</strong>
@@ -126,7 +61,7 @@
                     </div>
                     {{-- Postcode Form --}}
                     {{-- Prefecture Form --}}
-                    <div id="form-username" class="form-group2">
+                    <div id="form-prefecture" class="form-group2">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Prefecture</strong>
@@ -135,7 +70,7 @@
                     </div>
                     {{-- Prefecture Form --}}
                     {{-- City Form --}}
-                    <div id="form-username" class="form-group2">
+                    <div id="form-city" class="form-group2">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">City</strong>
@@ -144,7 +79,7 @@
                     </div>
                     {{-- City Form --}}
                     {{-- Local Form --}}
-                    <div id="form-username" class="form-group2">
+                    <div id="form-local" class="form-group2">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Local</strong>
@@ -153,7 +88,7 @@
                     </div>
                     {{-- Local Form --}}
                     {{-- StreetAddress Form --}}
-                    <div id="form-username" class="form-group2">
+                    <div id="form-streetaddress" class="form-group2">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Street Address</strong>
                         </div>
@@ -161,7 +96,7 @@
                     </div>
                     {{-- StreetAddress Form --}}
                     {{-- BusinessHour Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-businesshour" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Bisiness Hour</strong>
                         </div>
@@ -169,7 +104,7 @@
                     </div>
                     {{-- BusinessHour Form --}}
                     {{-- RegularHoliday Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-regularholiday" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Regular Holiday</strong>
                         </div>
@@ -177,7 +112,7 @@
                     </div>
                     {{-- RegularHoliday Form --}}
                     {{-- Phone Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-phone" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Phone</strong>
                         </div>
@@ -185,7 +120,7 @@
                     </div>
                     {{-- Phone Form --}}
                     {{-- Fax Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-fax" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Fax</strong>
                         </div>
@@ -193,7 +128,7 @@
                     </div>
                     {{-- Fax Form --}}
                     {{-- URL Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-url" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">URL</strong>
                         </div>
@@ -201,7 +136,7 @@
                     </div>
                     {{-- URL Form --}}
                     {{-- LicenseNumber Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-licensenumber" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">License Number</strong>
                         </div>
@@ -209,7 +144,7 @@
                     </div>
                     {{-- LicenseNumber Form --}}
                     {{-- Image Form --}}
-                    <div id="form-username" class="form-group">
+                    <div id="form-img" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Image</strong>
@@ -220,7 +155,7 @@
                     {{-- Image Form --}}
                     <div id="form-button" class="form-group no-border">
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="margin-top: 20px;">
-                            <button class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" id="send" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                     {{-- Image Form --}}

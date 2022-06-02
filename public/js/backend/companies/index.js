@@ -56,10 +56,11 @@ $(function () {
         },
         columns: [
             {title: "ID", field: "id", width: 45, headerFilter: "input", sorter: "number", headerFilterPlaceholder: " "},
-            {title: "Name", field: "name", minwidth: 200, headerFilter: "input", headerFilterPlaceholder: " "},
+            {title: "Name", field: "name", width: 180, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Email", field: "email", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Postcode", field: "postcode", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
-            {title: "Address", field: "street_address", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
+            {title: "Prefecture", field: "prefecture", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
+            {title: "Address", field: "street_address", minwidth: 300, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Updated At", field: "updated_at", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Action", field: "action", align: "center", headerFilter: false, width: 100, formatter: formatActionField, headerFilterPlaceholder: " ", headerSort: false, frozen: true}
         ],

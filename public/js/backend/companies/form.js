@@ -9,21 +9,21 @@ $(function () {
         scroll: false
     });
 
-    // init: show tooltip on hover
-    $('[data-toggle="tooltip"]').tooltip({
-        container: 'body'
-    });
+    // //a init: show tooltip on hover
+    // $('[data-toggle="tooltip"]').tooltip({
+    //     container: 'body'
+    // });
 
-    // show password field only after 'change password' is clicked
-    $('#reset-button').click(function (e) {
-        $('#reset-field').removeClass('hide');
-        $('#show-password-check').removeClass('hide');
-        // to always uncheck the checkbox after button click
-        $('#show-password').prop('checked', false);
-    });
+    // // show password field only after 'change password' is clicked
+    // $('#reset-button').click(function (e) {
+    //     $('#reset-field').removeClass('hide');
+    //     $('#show-password-check').removeClass('hide');
+    //     // to always uncheck the checkbox after button click
+    //     $('#show-password').prop('checked', false);
+    // });
 
-    // toggle password in plaintext if checkbox is selected
-    $("#show-password").click(function () {
-        $(this).is(":checked") ? $("#password").prop("type", "text") : $("#password").prop("type", "password");
-    });
+    // // toggle password in plaintext if checkbox is selected
+    // $("#show-password").click(function () {
+    //     $(this).is(":checked") ? $("#password").prop("type", "text") : $("#password").prop("type", "password");
+    // });
 });
