@@ -60,7 +60,6 @@ class CompanyController extends Controller
         $this->validator($newCompany, 'create')->validate();
 
         try {
-            // $newCompany['password'] = bcrypt($newCompany['password']);
             $company = Company::create($newCompany);
             if ($company) {
                 // Create is successful, back to list
@@ -90,6 +89,33 @@ class CompanyController extends Controller
         return view('backend.companies.form', [
             'company' => $company
         ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request) {
+        $newCompany = $request->all();
+        try {
+            $currentCompany = Company::find($request->get('id'));
+            if ($currentCompany) {
+                $this->validator($newCompany, 'update')->validate();
+                // Update company
+                $currentCompany->update($newCompany);
+                // If update is successful
+                return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_UPDATE_MESSAGE'));
+            } else {
+                // If update is failed
+                return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_UPDATE_MESSAGE'));
+            }
+        } catch (Exception $e) {
+            // If update is failed
+            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_UPDATE_MESSAGE'));
+        }
     }
     
     public function delete(Request $request) {

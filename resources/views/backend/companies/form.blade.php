@@ -111,7 +111,7 @@
                         @endif
                     </div>
                     {{-- Local Form End --}}
-                    {{-- StreetAddress Form --}}
+                    {{-- Street Address Form --}}
                     <div id="form-streetaddress" class="form-group2">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Street Address</strong>
@@ -122,8 +122,8 @@
                         {{Form::text('street_address', $company->street_address, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
                         @endif
                     </div>
-                    {{-- StreetAddress Form End --}}
-                    {{-- BusinessHour Form --}}
+                    {{-- Street Address Form End --}}
+                    {{-- Business Hour Form --}}
                     <div id="form-businesshour" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Bisiness Hour</strong>
@@ -134,8 +134,8 @@
                         {{Form::text('business_hour', $company->business_hour, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
                         @endif
                     </div>
-                    {{-- BusinessHour Form End --}}
-                    {{-- RegularHoliday Form --}}
+                    {{-- Business Hour Form End --}}
+                    {{-- Regular Holiday Form --}}
                     <div id="form-regularholiday" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Regular Holiday</strong>
@@ -146,7 +146,7 @@
                         {{Form::text('regular_holiday', $company->regular_holiday, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
                         @endif
                     </div>
-                    {{-- RegularHoliday Form End --}}
+                    {{-- Regular Holiday Form End --}}
                     {{-- Phone Form --}}
                     <div id="form-phone" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
@@ -183,7 +183,7 @@
                         @endif
                     </div>
                     {{-- URL Form End --}}
-                    {{-- LicenseNumber Form --}}
+                    {{-- License Number Form --}}
                     <div id="form-licensenumber" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">License Number</strong>
@@ -194,7 +194,7 @@
                         {{Form::text('license_number', $company->license_number, ['class' => 'form-control','id' => 'license_number'])}}
                         @endif
                     </div>
-                    {{-- LicenseNumber Form End --}}
+                    {{-- License Number Form End --}}
                     {{-- Image Form --}}
                     <div id="form-img" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
