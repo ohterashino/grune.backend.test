@@ -60,7 +60,6 @@ class CompanyController extends Controller
         
         try {
             // $company = Company::create($newCompany);
-            //拡張子を取得 
             
             $company = new Company();
             $company->id = $request->id;
@@ -80,16 +79,15 @@ class CompanyController extends Controller
             $company->license_number = $request->license_number;
             $company->save();
 
-            
+            // Get file extension
             $extension = $request->file("image")->getClientOriginalExtension();
-            $id = $request->get('id');
-            // $posts = Company::all();
-            // dd($posts);
-            $file = $request->image;
-            //保存のファイル名を構築
+            // Get id
+            $id = Company::max('id');
+            //Change file name
             $titlename = "image_".$id.".".$extension;
-            // 保存先変更
+            // Change save destination to public/uploads/files/
             $target_path = public_path('/uploads/files/');
+            $file = $request->image;
             $file->move($target_path,$titlename);
 
             if ($company) {
@@ -137,6 +135,18 @@ class CompanyController extends Controller
                 $this->validator($newCompany, 'update')->validate();
                 // Update company
                 $currentCompany->update($newCompany);
+                
+                // Get file extension
+                $extension = $request->file("image")->getClientOriginalExtension();
+                // Get id
+                $id = $request->id;
+                //Change file name
+                $titlename = "image_".$id.".".$extension;
+                // Change save destination to public/uploads/files/
+                $target_path = public_path('/uploads/files/');
+                $file = $request->image;
+                $file->move($target_path,$titlename);
+
                 // If update is successful
                 return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_UPDATE_MESSAGE'));
             } else {

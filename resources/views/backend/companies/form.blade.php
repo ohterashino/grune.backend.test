@@ -203,7 +203,7 @@
                         </div>
                         @if($company->page_type == 'create')
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
-                        <img src="/uploads/files/image_.png>
+                        <img src="/uploads/files/image_.png">
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
                         @else
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
