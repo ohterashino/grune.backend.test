@@ -79,9 +79,9 @@
                             <strong class="field-title">Prefecture</strong>
                         </div>
                         @if($company->page_type == 'create')
-                        {{Form::select('prefecture_id', ['1' => '北海道', '2' => '青森県', '3' => '岩手県', '4' => '宮城県', '5' => '秋田県', '6' => '山形県', '7' => '福島県'], ['selected' => $company->prefecture_id], ['class' => 'form-control','id' => 'prefecture_id'] )}}
+                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], ['class' => 'form-control', 'id' => 'prefecture_id']) }}
                         @else
-                        {{Form::select('prefecture_id', ['1' => '北海道', '2' => '青森県', '3' => '岩手県', '4' => '宮城県', '5' => '秋田県', '6' => '山形県', '7' => '福島県'], ['selected' => $company->prefecture_id], ['class' => 'form-control','id' => 'prefecture_id'] )}}
+                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], ['class' => 'form-control', 'id' => 'prefecture_id']) }}
                         @endif
                     </div>
                     {{-- Prefecture Form End --}}
@@ -203,6 +203,7 @@
                         </div>
                         @if($company->page_type == 'create')
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
+                        <img src="/uploads/files/image_.png>
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
                         @else
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
@@ -220,6 +221,7 @@
                         </div>
                     </div>
                     {{ Form::close() }}
+                    
                 </div>
                 <!-- /.box-body -->
             </div>

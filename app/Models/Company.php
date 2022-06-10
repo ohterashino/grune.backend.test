@@ -5,6 +5,7 @@ namespace App\Models;
 class Company extends \App\Models\Base\Company
 {
 	protected $fillable = [
+		'id',
 		'name',
 		'email',
 		'prefecture_id',

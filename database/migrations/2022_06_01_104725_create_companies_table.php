@@ -25,7 +25,8 @@ class CreateCompaniesTable extends Migration {
 			$table->string('street_address')->nullable();
 			$table->string('business_hour', 45)->nullable();
 			$table->string('regular_holiday', 45)->nullable();
-			$table->string('image')->nullable();
+			// $table->string('image')->nullable();
+			$table->string('image_path')->after('email_verified_at');
 			$table->string('fax', 15)->nullable();
 			$table->string('url')->nullable();
 			$table->string('license_number')->nullable();
@@ -42,6 +43,9 @@ class CreateCompaniesTable extends Migration {
 	public function down()
 	{
 		Schema::drop('companies');
+		Schema::table('companies', function (Blueprint $table) {
+			$table->dropColumn('image_path');
+	});
 	}
 
 }

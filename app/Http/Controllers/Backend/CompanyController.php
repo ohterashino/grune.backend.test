@@ -55,12 +55,43 @@ class CompanyController extends Controller
 
     public function create(Request $request) {
         $newCompany = $request->all();
-
-        // Validate input, indicate this is 'create' function
+        // // Validate input, indicate this is 'create' function
         $this->validator($newCompany, 'create')->validate();
-
+        
         try {
-            $company = Company::create($newCompany);
+            // $company = Company::create($newCompany);
+            //拡張子を取得 
+            
+            $company = new Company();
+            $company->id = $request->id;
+            $company->name = $request->name;
+            $company->email = $request->email;
+            $company->prefecture_id = $request->prefecture_id;
+            $company->phone = $request->phone;
+            $company->postcode = $request->postcode;
+            $company->city = $request->city;
+            $company->local = $request->local;
+            $company->street_address = $request->street_address;
+            $company->business_hour = $request->business_hour;
+            $company->regular_holiday = $request->regular_holiday;
+            $company->image = $request->image;
+            $company->fax = $request->fax;
+            $company->url = $request->url;
+            $company->license_number = $request->license_number;
+            $company->save();
+
+            
+            $extension = $request->file("image")->getClientOriginalExtension();
+            $id = $request->get('id');
+            // $posts = Company::all();
+            // dd($posts);
+            $file = $request->image;
+            //保存のファイル名を構築
+            $titlename = "image_".$id.".".$extension;
+            // 保存先変更
+            $target_path = public_path('/uploads/files/');
+            $file->move($target_path,$titlename);
+
             if ($company) {
                 // Create is successful, back to list
                 return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_CREATE_MESSAGE'));
@@ -138,4 +169,33 @@ class CompanyController extends Controller
             return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_MESSAGE'));
         }
     }
+
+    // public function store(Request $request)
+    // {
+    //     //拡張子付きでファイル名を取得
+    //     $filenameWithExt = $request->file("cover_image")->getClientOriginalName();
+
+    //     //ファイル名のみを取得
+    //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+    //     //拡張子を取得
+    //     $extension = $request->file("cover_image")->getClientOriginalExtension();
+
+    //     //保存のファイル名を構築
+    //     $filenameToStore = $filename."_".time().".".$extension;
+
+    //     $path = $request->file("cover_image")->storeAs("public/album_covers", $filenameToStore);
+
+    //     $album = new Company;
+    //     $album->name = $request->input("name");
+    //     $album->description = $request->input("description");
+    //     $album->cover_image = $filenameToStore;
+
+    //     $album->save();
+
+    //     return view('backend.companies.form', [
+    //         'company' => $company
+    //     ]);
+    // }
+
 }

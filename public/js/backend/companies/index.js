@@ -59,7 +59,7 @@ $(function () {
             {title: "Name", field: "name", width: 180, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Email", field: "email", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Postcode", field: "postcode", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
-            {title: "Prefecture", field: "prefecture", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
+            {title: "Prefecture", field: "display_name", width: 150, headerFilter:"input", headerFilterPlaceholder: " "},
             {title: "Address", field: "street_address", minwidth: 300, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Updated At", field: "updated_at", width: 150, headerFilter: "input", headerFilterPlaceholder: " "},
             {title: "Action", field: "action", align: "center", headerFilter: false, width: 100, formatter: formatActionField, headerFilterPlaceholder: " ", headerSort: false, frozen: true}
