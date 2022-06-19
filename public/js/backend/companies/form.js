@@ -4,10 +4,15 @@ $(function () {
     $('li#menu-companies').find('.treeview-menu').css('display', 'block');
     $('li#menu-companies').find('.treeview-menu').find('.add-companies a').addClass('sub-menu-active');
 
-    $('#user-form').validationEngine('attach', {
+    $('#company-form').validationEngine('attach', {
         promptPosition : 'topLeft',
         scroll: false
     });
+
+        // init: show tooltip on hover
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body'
+        });
 
     // Postal Code Search
     document.querySelector('.api-address').addEventListener('click', () => {

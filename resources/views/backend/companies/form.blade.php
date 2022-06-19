@@ -36,11 +36,13 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Name</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('name', $company->name, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
+                        {{Form::text('name', $company->name,array('placeholder' => 'Grune Asia', 'class' => 'form-control validate[required, maxSize[100]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'name'))}}
                         @else
-                        {{Form::text('name', $company->name, ['class' => 'form-control','id' => 'name','placeholder' => 'Grune Asia'])}}
+                        {{Form::text('name', $company->name,array('placeholder' => 'Grune Asia', 'class' => 'form-control validate[required, maxSize[100]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'name'))}}
                         @endif
+                        </div>
                     </div>
                     {{-- Name Form End --}}
                     {{-- Emain Form --}}
@@ -49,11 +51,13 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Email</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::email('email', $company->email, ['class' => 'form-control','id' => 'email','placeholder' => 'info@grune.co.jp'])}}
+                        {{Form::email('email', $company->email,array('placeholder' => 'info@grune.co.jp', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'email'))}}
                         @else
-                        {{Form::email('email', $company->email, ['class' => 'form-control','id' => 'email','placeholder' => 'info@grune.co.jp'])}}
+                        {{Form::email('email', $company->email,array('placeholder' => 'info@grune.co.jp', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'email'))}}
                         @endif
+                        </div>
                     </div>
                     {{-- Email Form End --}}
                     {{-- Postcode Form --}}
@@ -62,14 +66,16 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Postcode</strong>
                         </div>
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header postcode ">
+                            <div class="postform">
+                            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content postcode">
                             @if($company->page_type == 'create')
-                            {{Form::text('postcode', $company->postcode, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
+                            {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
                             @else
-                            {{Form::text('postcode', $company->postcode, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
+                            {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
                             @endif
-                                    <button type="button" name="button" class="btn btn-primary api-address">Search</button>
-                        </div>
+                            </div>
+                            <button type="button" name="button" class="btn btn-primary api-address">Search</button>
+                            </div>
                     </div>
                     {{-- Postcode Form End --}}
                     {{-- Prefecture Form --}}
@@ -78,11 +84,13 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Prefecture</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], ['class' => 'form-control', 'id' => 'prefecture_id']) }}
+                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], array('class' => 'form-control validate[required]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'prefecture_id')) }}
                         @else
-                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], ['class' => 'form-control', 'id' => 'prefecture_id']) }}
+                        {{ Form::select('prefecture_id', App\Models\Prefecture::selectlist(), ['selected' => $company->prefecture_id], array('class' => 'form-control validate[required]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'prefecture_id')) }}
                         @endif
+                        </div>
                     </div>
                     {{-- Prefecture Form End --}}
                     {{-- City Form --}}
@@ -91,11 +99,13 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">City</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('city', $company->city, ['class' => 'form-control','id' => 'city','placeholder' => '仙台市青葉区'])}}
+                        {{Form::text('city', $company->city, array('placeholder' => '仙台市青葉区', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'city'))}}
                         @else
-                        {{Form::text('city', $company->city, ['class' => 'form-control','id' => 'city','placeholder' => '仙台市青葉区'])}}
+                        {{Form::text('city', $company->city, array('placeholder' => '仙台市青葉区', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'city'))}}
                         @endif
+                        </div>
                     </div>
                     {{-- City Form End --}}
                     {{-- Local Form --}}
@@ -104,11 +114,13 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Local</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('local', $company->local, ['class' => 'form-control','id' => 'local','placeholder' => '本町'])}}
+                        {{Form::text('local', $company->local, array('placeholder' => '本町', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'local'))}}
                         @else
-                        {{Form::text('local', $company->local, ['class' => 'form-control','id' => 'local','placeholder' => '本町'])}}
+                        {{Form::text('local', $company->local, array('placeholder' => '本町', 'class' => 'form-control validate[required, maxSize[255]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'local'))}}
                         @endif
+                        </div>
                     </div>
                     {{-- Local Form End --}}
                     {{-- Street Address Form --}}
@@ -116,11 +128,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Street Address</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('street_address', $company->street_address, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
                         @else
                         {{Form::text('street_address', $company->street_address, ['class' => 'form-control','id' => 'street_address','placeholder' => '宮城県仙台市青葉区本町1-12-12 GMビルディング6F'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Street Address Form End --}}
                     {{-- Business Hour Form --}}
@@ -128,11 +142,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Bisiness Hour</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('business_hour', $company->business_hour, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
                         @else
                         {{Form::text('business_hour', $company->business_hour, ['class' => 'form-control','id' => 'business_hour','placeholder' => '09:00 - 18:00'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Business Hour Form End --}}
                     {{-- Regular Holiday Form --}}
@@ -140,11 +156,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Regular Holiday</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('regular_holiday', $company->regular_holiday, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
                         @else
                         {{Form::text('regular_holiday', $company->regular_holiday, ['class' => 'form-control','id' => 'regular_holiday','placeholder' => '12'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Regular Holiday Form End --}}
                     {{-- Phone Form --}}
@@ -152,11 +170,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Phone</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
                         @else
                         {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Phone Form End --}}
                     {{-- Fax Form --}}
@@ -164,11 +184,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">Fax</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
                         @else
                         {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Fax Form End --}}
                     {{-- URL Form --}}
@@ -176,11 +198,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">URL</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
                         @else
                         {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- URL Form End --}}
                     {{-- License Number Form --}}
@@ -188,11 +212,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <strong class="field-title">License Number</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::text('license_number', $company->license_number, ['class' => 'form-control','id' => 'license_number'])}}
                         @else
                         {{Form::text('license_number', $company->license_number, ['class' => 'form-control','id' => 'license_number'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- License Number Form End --}}
                     {{-- Image Form --}}
@@ -201,6 +227,7 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Image</strong>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
@@ -208,6 +235,7 @@
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
                         @endif
+                        </div>
                     </div>
                     {{-- Image Form End --}}
                     <div id="form-button" class="form-group no-border">
@@ -244,5 +272,5 @@
 <!-- validationEngine -->
 <script src="{{ asset('js/3rdparty/validation-engine/jquery.validationEngine-en.js') }}"></script>
 <script src="{{ asset('js/3rdparty/validation-engine/jquery.validationEngine.js') }}"></script>
-<script src="{{ asset('js/backend/companies//form.js') }}"></script>
+<script src="{{ asset('js/backend/companies/form.js') }}"></script>
 @endsection

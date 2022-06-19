@@ -159,20 +159,19 @@ input[type=number]::-webkit-outer-spin-button {
     align-items: center;
     /* border-top: 1px solid #eee; */
 }
+.postform {
+padding: 0;
+margin: 0;
+display: flex;
 
+}
 #postcode {
+    width: 140px;
     width: 10em;
-    /* margin-left: -20%; */
-    margin-right: 20px;
 }
 .postcode {
-    justify-items: center;
     display: flex;
-    width: auto;
-    padding: 0;
-    margin-right: auto;
-    position: relative;
-    right: 2%;
+    width: 170px !important;
 }
 .api-address {
     margin-right: auto;
@@ -862,25 +861,11 @@ input[type=search] {
   font-weight: bold;
 }
 
-@media only screen and (max-width:1198px){
-    .postcode {
-        position: relative;
-        right: 4.5%;
-    }
-}
-
 @media only screen and (max-width:991px){
     .form-group, .form-group2 {
         display: flex;
         flex-flow: column;
         overflow: auto;
-    }
-    #postcode {
-        margin-left: 0;
-    }
-    .postcode {
-        position: relative;
-        right: 0;
     }
 }
 @media only screen and (max-width:767px){
