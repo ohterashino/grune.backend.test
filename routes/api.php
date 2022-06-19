@@ -28,4 +28,7 @@ Route::GROUP(['middleware' => ['auth:user']], function() {
 
     // Get Company List
     Route::get('/admin/companies/getCompaniesTabular', 'Api\ApiCompaniesController@getCompaniesTabular');
-});
+
+    // Get Address from postal code
+    Route::GET('/company/getLocalInfo/{postcode}','Api\ApiCompaniesController@postcode');
+  });

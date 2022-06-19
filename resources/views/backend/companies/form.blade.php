@@ -68,7 +68,7 @@
                             @else
                             {{Form::text('postcode', $company->postcode, ['class' => 'form-control','id' => 'postcode','placeholder' => '9800014'])}}
                             @endif
-                                    <button type="submit" name="submit" class="btn btn-primary btn-search">Search</button>
+                                    <button type="button" name="button" class="btn btn-primary api-address">Search</button>
                         </div>
                     </div>
                     {{-- Postcode Form End --}}
@@ -203,7 +203,6 @@
                         </div>
                         @if($company->page_type == 'create')
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
-                        <img src="/uploads/files/image_.png">
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
                         @else
                         {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
@@ -220,8 +219,7 @@
                             @endif
                         </div>
                     </div>
-                    {{ Form::close() }}
-                    
+                    {{ Form::close() }}   
                 </div>
                 <!-- /.box-body -->
             </div>

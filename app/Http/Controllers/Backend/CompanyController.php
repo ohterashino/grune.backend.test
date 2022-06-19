@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Postcode;
 use Config;
 
 class CompanyController extends Controller
@@ -179,33 +180,5 @@ class CompanyController extends Controller
             return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_MESSAGE'));
         }
     }
-
-    // public function store(Request $request)
-    // {
-    //     //拡張子付きでファイル名を取得
-    //     $filenameWithExt = $request->file("cover_image")->getClientOriginalName();
-
-    //     //ファイル名のみを取得
-    //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-    //     //拡張子を取得
-    //     $extension = $request->file("cover_image")->getClientOriginalExtension();
-
-    //     //保存のファイル名を構築
-    //     $filenameToStore = $filename."_".time().".".$extension;
-
-    //     $path = $request->file("cover_image")->storeAs("public/album_covers", $filenameToStore);
-
-    //     $album = new Company;
-    //     $album->name = $request->input("name");
-    //     $album->description = $request->input("description");
-    //     $album->cover_image = $filenameToStore;
-
-    //     $album->save();
-
-    //     return view('backend.companies.form', [
-    //         'company' => $company
-    //     ]);
-    // }
 
 }
