@@ -14,13 +14,13 @@ $(function () {
             container: 'body'
         });
 
-    // Postal Code Search
+    // Postal Code Search 
     document.querySelector('.api-address').addEventListener('click', () => {
         //Get a value from a text field for a zip code
         const elem = document.getElementById('postcode');
         const postcode = elem.value;
         //Fetching JSON strings from the API with fetch
-        fetch('../api/company/getLocalInfo/' + postcode)
+        fetch('http://localhost/api/company/getLocalInfo/' + postcode)
         .then((data) => data.json())
         .then((obj) => {
             //If the zip code does not exist, an empty object is returned.
@@ -94,22 +94,21 @@ $(function () {
             });
     });
 
-
-    // //a init: show tooltip on hover
-    // $('[data-toggle="tooltip"]').tooltip({
-    //     container: 'body'
-    // });
-
-    // // show password field only after 'change password' is clicked
-    // $('#reset-button').click(function (e) {
-    //     $('#reset-field').removeClass('hide');
-    //     $('#show-password-check').removeClass('hide');
-    //     // to always uncheck the checkbox after button click
-    //     $('#show-password').prop('checked', false);
-    // });
-
-    // // toggle password in plaintext if checkbox is selected
-    // $("#show-password").click(function () {
-    //     $(this).is(":checked") ? $("#password").prop("type", "text") : $("#password").prop("type", "password");
-    // });
+    // Preview process when selecting image files
+    $('#image').on('change', function (ev) {
+        if (ev.target.files[0]){
+            //When image file is selected
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                $('#img_prv').attr('src', ev.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+            let label = document.getElementById("fileImage");
+            label.innerHTML = '';
+        } else {
+            // When no image file is selected
+            document.getElementById('fileImage').innerHTML = '画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）';
+		    document.getElementById('img_prv').src = '/img/no-image/no-image.jpg';
+        }
+        })
 });

@@ -36,7 +36,7 @@ class CompanyController extends Controller
                 'prefecture_id' => 'required',
                 'city' => 'required|string|max:225',
                 'local' => 'required|string|max:225',
-                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|size:5000',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
     }
     
@@ -60,6 +60,20 @@ class CompanyController extends Controller
         $this->validator($newCompany, 'create')->validate();
         
         try {
+            // Get file extension
+            $extension = $request->file("image")->getClientOriginalExtension();
+            // Get id
+            $id = Company::max('id');
+            $img_id = ++$id;
+            //Change file name
+            $titlename = "image_".$img_id.".".$extension;
+            // Change save destination to public/uploads/files/
+            $target_path = public_path('/uploads/files/');
+            $file = $request->image;
+            $file->move($target_path,$titlename);
+            // Create image file URL
+            $image_url = "http://localhost/uploads/files/".$titlename;
+            
             // $company = Company::create($newCompany);
             
             $company = new Company();
@@ -74,22 +88,12 @@ class CompanyController extends Controller
             $company->street_address = $request->street_address;
             $company->business_hour = $request->business_hour;
             $company->regular_holiday = $request->regular_holiday;
-            $company->image = $request->image;
+            $company->image = $image_url;
             $company->fax = $request->fax;
             $company->url = $request->url;
             $company->license_number = $request->license_number;
             $company->save();
 
-            // Get file extension
-            $extension = $request->file("image")->getClientOriginalExtension();
-            // Get id
-            $id = Company::max('id');
-            //Change file name
-            $titlename = "image_".$id.".".$extension;
-            // Change save destination to public/uploads/files/
-            $target_path = public_path('/uploads/files/');
-            $file = $request->image;
-            $file->move($target_path,$titlename);
 
             if ($company) {
                 // Create is successful, back to list
@@ -116,6 +120,13 @@ class CompanyController extends Controller
         $company->page_title = 'Company Edit Page';
         // Add page type here to indicate that the form.blade.php is in 'edit' mode
         $company->page_type = 'edit';
+        $extension = substr($company->image,0,3);
+        if ($extension == 'htt')
+        {
+            $company->extension = 1;
+        } else {
+            $company->extension = 0;
+        }
         return view('backend.companies.form', [
             'company' => $company
         ]);
@@ -134,9 +145,15 @@ class CompanyController extends Controller
             $currentCompany = Company::find($request->get('id'));
             if ($currentCompany) {
                 $this->validator($newCompany, 'update')->validate();
-                // Update company
-                $currentCompany->update($newCompany);
-                
+                // Delete stored images
+                $extension = substr($currentCompany->image,0,3);
+                if ($extension == 'htt')
+                {
+                    $len = strlen('http://localhost/');
+                    $image_path = substr($currentCompany->image,$len);
+                    unlink("/Applications/MAMP/htdocs/backendtest/public/" .$image_path);
+                }
+
                 // Get file extension
                 $extension = $request->file("image")->getClientOriginalExtension();
                 // Get id
@@ -147,7 +164,26 @@ class CompanyController extends Controller
                 $target_path = public_path('/uploads/files/');
                 $file = $request->image;
                 $file->move($target_path,$titlename);
-
+                // Create image file URL
+                $image_url = "http://localhost/uploads/files/".$titlename;
+                
+                // Update company
+                $currentCompany->name = $request->name;
+                $currentCompany->email = $request->email;
+                $currentCompany->prefecture_id = $request->prefecture_id;
+                $currentCompany->phone = $request->phone;
+                $currentCompany->postcode = $request->postcode;
+                $currentCompany->city = $request->city;
+                $currentCompany->local = $request->local;
+                $currentCompany->street_address = $request->street_address;
+                $currentCompany->business_hour = $request->business_hour;
+                $currentCompany->regular_holiday = $request->regular_holiday;
+                $currentCompany->image = $image_url;
+                $currentCompany->fax = $request->fax;
+                $currentCompany->url = $request->url;
+                $currentCompany->license_number = $request->license_number;
+                $currentCompany->save();
+                
                 // If update is successful
                 return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_UPDATE_MESSAGE'));
             } else {
@@ -166,7 +202,14 @@ class CompanyController extends Controller
             $company = Company::find($request->get('id'));
             // If to-delete company is not the one currently logged in, proceed with delete attempt
             if (Auth::id() != $company->id) {
-
+               // Delete stored images
+               $extension = substr($company->image,0,3);
+               if ($extension == 'htt')
+               {
+                   $len = strlen('http://localhost/');
+                   $image_path = substr($company->image,$len);
+                   unlink("/Applications/MAMP/htdocs/backendtest/public/" .$image_path);
+               }
                 // Delete company
                 $company->delete();
 

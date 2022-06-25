@@ -66,16 +66,16 @@
                             <span class="label label-danger label-required">Required</span>
                             <strong class="field-title">Postcode</strong>
                         </div>
-                            <div class="postform">
+                        <div class="postform">
                             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content postcode">
-                            @if($company->page_type == 'create')
-                            {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
-                            @else
-                            {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
-                            @endif
+                                @if($company->page_type == 'create')
+                                {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
+                                @else
+                                {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
+                                @endif
                             </div>
                             <button type="button" name="button" class="btn btn-primary api-address">Search</button>
-                            </div>
+                        </div>
                     </div>
                     {{-- Postcode Form End --}}
                     {{-- Prefecture Form --}}
@@ -229,11 +229,22 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
-                        {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
+                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif'])}}
+                        {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label', 'id'=>'fileImage'])}}
+                        <div id="upp_img">
+                            <img id="img_prv" src="{{ asset('/img/no-image/no-image.jpg') }}">
+                        </div>
                         @else
-                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image'])}}
-                        {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label'])}}
+                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif'])}}
+                        {{Form::label('fileImage','下記の画像は前回のアップロード時の画像です。
+                        画像を再度アップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label br-label', 'id'=>'fileImage'])}}
+                        <div id="upp_img">
+                            @if($company->extension == 1)
+                            <img class="img-responsive" id="img_prv" src="{{ $company->image }}">
+                            @else
+                            <img id="img_prv" src="{{ asset('/img/no-image/no-image.jpg') }}">
+                            @endif
+                        </div>
                         @endif
                         </div>
                     </div>
@@ -247,7 +258,7 @@
                             @endif
                         </div>
                     </div>
-                    {{ Form::close() }}   
+                    {{ Form::close() }}
                 </div>
                 <!-- /.box-body -->
             </div>
