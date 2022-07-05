@@ -28,4 +28,11 @@ class ApiCompaniesController extends Controller {
         $address = Postcode::where('postcode',$postcode)->first();
         return response()->json($address);
     }
+
+    public function Prefectures($prefecture_name)
+    {
+        $prefectures = Prefecture::where('display_name',$prefecture_name)->first();
+        return response()->json($prefectures);
+    }
+    
 }

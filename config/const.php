@@ -17,4 +17,6 @@ return [
     'SUCCESS_DELETE_MESSAGE' => 'Content was Deleted',        // success when data deleted
     'FAILED_DELETE_MESSAGE'  => 'Failed to Delete Content', // failed when data deleted
     'FAILED_DELETE_SELF_MESSAGE'  => 'Failed to Delete Current User', // failed when data deleted
+    'FAILED_DELETE_COMPANY_DATA_MESSAGE'  => 'Could not delete because the corresponding user ID could not be found', 
+    // failed when company data deleted
 ];

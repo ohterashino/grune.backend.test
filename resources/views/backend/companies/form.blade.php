@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     {{-- Name Form End --}}
-                    {{-- Emain Form --}}
+                    {{-- Email Form --}}
                     <div id="form-email" class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
                             <span class="label label-danger label-required">Required</span>
@@ -172,9 +172,9 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
+                        {{Form::tel('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000','pattern' => "\d{2,4}-?\d{2,4}-?\d{3,4}"])}}
                         @else
-                        {{Form::text('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000'])}}
+                        {{Form::tel('phone', $company->phone, ['class' => 'form-control','id' => 'phone','placeholder' => '000-000-0000','pattern' => "\d{2,4}-?\d{2,4}-?\d{3,4}"])}}
                         @endif
                         </div>
                     </div>
@@ -186,9 +186,9 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
+                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000','pattern' => "\d{2,4}-?\d{2,4}-?\d{3,4}"])}}
                         @else
-                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000'])}}
+                        {{Form::text('fax', $company->fax, ['class' => 'form-control','id' => 'fax','placeholder' => '000-000-0000','pattern' => "\d{2,4}-?\d{2,4}-?\d{3,4}"])}}
                         @endif
                         </div>
                     </div>
@@ -200,9 +200,9 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
                         @if($company->page_type == 'create')
-                        {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
+                        {{Form::url('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
                         @else
-                        {{Form::text('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
+                        {{Form::url('url', $company->url, ['class' => 'form-control','id' => 'url','placeholder' => 'https://grune.co.jp'])}}
                         @endif
                         </div>
                     </div>
@@ -228,14 +228,21 @@
                             <strong class="field-title">Image</strong>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
+                            
                         @if($company->page_type == 'create')
-                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif'])}}
+                        <div style="width: 250px">
+                            {{Form::file('image', array('class'=>'custom-file-input validate[required]','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif','data-prompt-position'=>'inline'))}}      
+                        </div>
                         {{Form::label('fileImage','画像をアップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label', 'id'=>'fileImage'])}}
+                        {{-- array('class' => 'form-control validate[required]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'prefecture_id') --}}
                         <div id="upp_img">
                             <img id="img_prv" src="{{ asset('/img/no-image/no-image.jpg') }}">
+                            <div class="error-message" id="prompt1"></div>
                         </div>
                         @else
-                        {{Form::file('image', ['class'=>'custom-file-input','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif'])}}
+                        <div style="width: 250px">
+                            {{Form::file('image', array('class'=>'custom-file-input validate[required]','id'=>'image','accept' => 'image/png, image/jpeg,image/jpg ,image/gif','data-prompt-position'=>'inline'))}}      
+                        </div>
                         {{Form::label('fileImage','下記の画像は前回のアップロード時の画像です。
                         画像を再度アップロードして下さい（推奨サイズ：1280px × 720px・容量は5MBまで）',['class'=>'custom-file-label br-label', 'id'=>'fileImage'])}}
                         <div id="upp_img">

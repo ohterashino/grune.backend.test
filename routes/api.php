@@ -31,4 +31,8 @@ Route::GROUP(['middleware' => ['auth:user']], function() {
 
     // Get Address from postal code
     Route::GET('/company/getLocalInfo/{postcode}','Api\ApiCompaniesController@postcode');
+
+    // Get prefecture id
+    Route::GET('/company/getPrefectures/{prefecture_name}','Api\ApiCompaniesController@Prefectures');
+
   });

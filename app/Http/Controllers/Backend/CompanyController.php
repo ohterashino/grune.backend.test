@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Postcode;
+use App\Models\User;
 use Config;
 
 class CompanyController extends Controller
@@ -32,11 +35,18 @@ class CompanyController extends Controller
                 // 'name' => 'required|string|max:100',
                 'name' => 'required|string|max:100|unique:companies,name,' . $data['id'],
                 'email' => 'required|email|max:225',
-                'postcode' => 'required|integer|digits:7',
+                'postcode' => 'required|digits:7',
                 'prefecture_id' => 'required',
                 'city' => 'required|string|max:225',
                 'local' => 'required|string|max:225',
+                'phone' => 'max:15',
+                'fax' => 'max:15',
+                'url' => 'max:225',
+                'license_number' => 'max:225',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+                'street_address' => 'max:225',
+                'business_hour' => 'max:45',
+                'regular_holiday' => 'max:45',
         ]);
     }
     
@@ -67,14 +77,10 @@ class CompanyController extends Controller
             $img_id = ++$id;
             //Change file name
             $titlename = "image_".$img_id.".".$extension;
-            // Change save destination to public/uploads/files/
-            $target_path = public_path('/uploads/files/');
-            $file = $request->image;
-            $file->move($target_path,$titlename);
+            // Save image file
+            Storage::putFileAs('', $request->image, $titlename);
             // Create image file URL
-            $image_url = "http://localhost/uploads/files/".$titlename;
-            
-            // $company = Company::create($newCompany);
+            $image_url = Storage::disk('public')->url($titlename);
             
             $company = new Company();
             $company->id = $request->id;
@@ -93,7 +99,6 @@ class CompanyController extends Controller
             $company->url = $request->url;
             $company->license_number = $request->license_number;
             $company->save();
-
 
             if ($company) {
                 // Create is successful, back to list
@@ -146,12 +151,12 @@ class CompanyController extends Controller
             if ($currentCompany) {
                 $this->validator($newCompany, 'update')->validate();
                 // Delete stored images
-                $extension = substr($currentCompany->image,0,3);
-                if ($extension == 'htt')
+                $len = strlen(env('APP_URL').'/uploads/files/');
+                $contents = substr($currentCompany->image,$len);
+                // $extension = substr($currentCompany->image,0,3);
+                if (File::exists(public_path('uploads/files/'.$contents)))
                 {
-                    $len = strlen('http://localhost/');
-                    $image_path = substr($currentCompany->image,$len);
-                    unlink("/Applications/MAMP/htdocs/backendtest/public/" .$image_path);
+                    Storage::delete($contents);
                 }
 
                 // Get file extension
@@ -160,12 +165,10 @@ class CompanyController extends Controller
                 $id = $request->id;
                 //Change file name
                 $titlename = "image_".$id.".".$extension;
-                // Change save destination to public/uploads/files/
-                $target_path = public_path('/uploads/files/');
-                $file = $request->image;
-                $file->move($target_path,$titlename);
+                // Save image file
+                Storage::putFileAs('', $request->image, $titlename);
                 // Create image file URL
-                $image_url = "http://localhost/uploads/files/".$titlename;
+                $image_url = Storage::disk('public')->url($titlename);
                 
                 // Update company
                 $currentCompany->name = $request->name;
@@ -200,24 +203,29 @@ class CompanyController extends Controller
         try {
             // Get company by id
             $company = Company::find($request->get('id'));
+            // Get user by id
+            $user = User::find($request->get('id'));
             // If to-delete company is not the one currently logged in, proceed with delete attempt
-            if (Auth::id() != $company->id) {
-               // Delete stored images
-               $extension = substr($company->image,0,3);
-               if ($extension == 'htt')
-               {
-                   $len = strlen('http://localhost/');
-                   $image_path = substr($company->image,$len);
-                   unlink("/Applications/MAMP/htdocs/backendtest/public/" .$image_path);
-               }
+            if (User::find($company->id)) {
+                // Delete stored images
+                $len = strlen(env('APP_URL').'/uploads/files/');
+                $contents = substr($company->image,$len);
+                // $extension = substr($currentCompany->image,0,3);
+                if (File::exists(public_path('uploads/files/'.$contents)))
+                {
+                    Storage::delete($contents);
+                }
                 // Delete company
                 $company->delete();
+                // Delete user
+                $user->delete();
 
                 // If delete is successful
                 return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_DELETE_MESSAGE'));
             }
-            // Send error if logged in user trying to delete himself
-            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_SELF_MESSAGE'));
+            // If delete is failed
+            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_COMPANY_DATA_MESSAGE'));
+            
         } catch (Exception $e) {
             // If delete is failed
             return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_MESSAGE'));
