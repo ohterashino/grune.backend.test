@@ -69,9 +69,9 @@
                         <div class="postform">
                             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content postcode">
                                 @if($company->page_type == 'create')
-                                {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
+                                {{Form::number('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
                                 @else
-                                {{Form::text('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
+                                {{Form::number('postcode', $company->postcode,array('placeholder' => '9800014', 'class' => 'form-control validate[required, maxSize[7]]', 'data-prompt-position' => 'bottomLeft:0,11','id' => 'postcode'))}}
                                 @endif
                             </div>
                             <button type="button" name="button" class="btn btn-primary api-address">Search</button>
