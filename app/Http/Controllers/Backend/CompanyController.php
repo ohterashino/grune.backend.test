@@ -203,10 +203,8 @@ class CompanyController extends Controller
         try {
             // Get company by id
             $company = Company::find($request->get('id'));
-            // Get user by id
-            $user = User::find($request->get('id'));
-            // If to-delete company is not the one currently logged in, proceed with delete attempt
-            if (User::find($company->id)) {
+            
+            if (Company::find($company->id)) {
                 // Delete stored images
                 $len = strlen(env('APP_URL').'/uploads/files/');
                 $contents = substr($company->image,$len);
@@ -217,14 +215,12 @@ class CompanyController extends Controller
                 }
                 // Delete company
                 $company->delete();
-                // Delete user
-                $user->delete();
 
                 // If delete is successful
                 return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_DELETE_MESSAGE'));
             }
             // If delete is failed
-            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_COMPANY_DATA_MESSAGE'));
+            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_DELETE_SELF_MESSAGE'));
             
         } catch (Exception $e) {
             // If delete is failed
